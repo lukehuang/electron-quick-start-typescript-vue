@@ -4,7 +4,8 @@ import { format as formatUrl } from 'url'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-let mainWindow: Electron.BrowserWindow;
+let mainWindow: Electron.BrowserWindow | null
+
 
 function createWindow() {
   // Create the browser window.
@@ -30,9 +31,9 @@ function createWindow() {
   }
 
   mainWindow.webContents.on('devtools-opened', () => {
-    mainWindow.focus()
+    mainWindow && mainWindow.focus()
     setImmediate(() => {
-      mainWindow.focus()
+      mainWindow && mainWindow.focus()
     })
   })
 
