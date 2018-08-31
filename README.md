@@ -1,6 +1,6 @@
 # electron-quick-start-typescript-vue
 
-Base on [https://github.com/yantze/electron-quick-start-typescript](https://github.com/yantze/electron-quick-start-typescript).
+Base on [https://github.com/electron/electron-quick-start-typescript](https://github.com/electron/electron-quick-start-typescript).
 
 ## To Use
 
