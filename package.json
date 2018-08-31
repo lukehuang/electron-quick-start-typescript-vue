@@ -1,5 +1,5 @@
 {
-  "name": "electron-quick-start-typescript",
+  "name": "electron-quick-start-typescript-vue",
   "version": "1.0.0",
   "description": "A minimal Electron application written with Typescript",
   "scripts": {
@@ -10,14 +10,15 @@
     "dist": "npm run compile && electron-builder",
     "dist:dir": "npm run dist --dir -c.compression=store -c.mac.identity=null"
   },
-  "repository": "https://github.com/electron/electron-quick-start-typescript",
+  "repository": "https://github.com/yantze/electron-quick-start-typescript-vue",
   "keywords": [
     "Electron",
     "quick",
     "start",
     "tutorial",
     "demo",
-    "typescript"
+    "typescript",
+    "vue"
   ],
   "author": "GitHub",
   "license": "CC0-1.0",
