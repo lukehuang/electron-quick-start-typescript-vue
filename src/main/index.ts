@@ -1,5 +1,8 @@
 import { app, BrowserWindow } from "electron";
 import * as path from "path";
+import { format as formatUrl } from 'url'
+
+const isDevelopment = process.env.NODE_ENV !== 'production'
 
 let mainWindow: Electron.BrowserWindow;
 
@@ -10,11 +13,28 @@ function createWindow() {
     width: 800,
   });
 
-  // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, "../index.html"));
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  if (isDevelopment) {
+    mainWindow.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`)
+  }
+  else {
+    mainWindow.loadURL(formatUrl({
+      pathname: path.join(__dirname, 'index.html'),
+      protocol: 'file',
+      slashes: true
+    }))
+  }
+
+  if (isDevelopment) {
+    mainWindow.webContents.openDevTools()
+  }
+
+  mainWindow.webContents.on('devtools-opened', () => {
+    mainWindow.focus()
+    setImmediate(() => {
+      mainWindow.focus()
+    })
+  })
 
   // Emitted when the window is closed.
   mainWindow.on("closed", () => {
@@ -25,11 +45,6 @@ function createWindow() {
   });
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on("ready", createWindow);
-
 // Quit when all windows are closed.
 app.on("window-all-closed", () => {
   // On OS X it is common for applications and their menu bar
@@ -38,6 +53,11 @@ app.on("window-all-closed", () => {
     app.quit();
   }
 });
+
+// This method will be called when Electron has finished
+// initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
+app.on("ready", createWindow);
 
 app.on("activate", () => {
   // On OS X it"s common to re-create a window in the app when the
