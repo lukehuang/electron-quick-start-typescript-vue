@@ -47,5 +47,13 @@
     "renderer": {
       "webpackConfig": "custom.webpack.additions.js"
     }
+  },
+  "build": {
+    "appId": "com.github.yantze.app",
+    "mac": {
+      "category": "public.app-category.Reference"
+    },
+    "win": {}
   }
+
 }

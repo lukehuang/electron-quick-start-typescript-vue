@@ -2,6 +2,7 @@
 
 <template>
     <div>
+        Name: <input v-model="name" type="text">
         <div class="greeting">Hello {{name}}{{exclamationMarks}}</div>
         <button @click="decrement">-</button>
         <button @click="increment">+</button>
@@ -12,10 +13,10 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  props: ['name', 'initialEnthusiasm'],
   data() {
     return {
-      enthusiasm: this.initialEnthusiasm,
+      name: '',
+      enthusiasm: 5,
     }
   },
   methods: {
